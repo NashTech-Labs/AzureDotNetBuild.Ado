@@ -1,0 +1,28 @@
+# Use Azure Pipelines to build your .NET Core projects. 
+# Build your projects on Windows, Linux, or macOS without the need to set up infrastructure.
+
+parameters:
+- name: serviceName
+  type: string
+  default: ''
+  
+- name: buildConfiguration
+  type: string
+  default: 'Release'
+  values:
+  - Test
+  - Release
+
+- name: workingDirectory
+  type: string
+  default: ''
+
+steps:     
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build ${{ parameters.buildConfiguration }}'
+    inputs:
+      command: build
+      projects: '${{ parameters.workingDirectory }}'                        #Or like this '${{ parameters.serviceName }}/src/**/*.csproj'
+      arguments: '--configuration ${{ parameters.buildConfiguration }}' # Update this to match your need
+      workingDirectory: '${{ parameters.workingDirectory }}'
+    
