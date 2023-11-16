@@ -32,7 +32,7 @@ You can directly call a particular template as per the requirement. for example:
 
   steps:
   # passing the parameters
-  - template: templates/DotNet_Build.yaml
+  - template: DotNet_Build.yaml
     parameters:
       projects: '${{ parameters.projects }}'                         
       buildConfiguration: '${{ parameters.buildConfiguration }}'
